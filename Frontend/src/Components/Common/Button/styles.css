@@ -1,0 +1,35 @@
+.btn{
+    background-color: var(--clr__primary);
+    color: var(--txt__light);
+    padding: 0.6rem 3rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+    max-width: 620px;
+    width: 100%;
+    margin: 0 auto;
+    text-transform: capitalize;
+    box-sizing: border-box;
+    opacity: 1;
+    display: block;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    box-shadow: 5px 5px 8px 1px var(--clr__primary);
+    transform: translateY(-4px);
+    opacity: 0.87;
+}
+
+.btn.accent{
+    background-color: var(--clr__accent);
+}
+
+.btn.accent:hover{
+    box-shadow: 5px 5px 8px 1px var(--clr__accent);
+    outline: 1px solid var(--txt__light);
+}

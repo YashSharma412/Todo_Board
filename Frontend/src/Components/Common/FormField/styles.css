@@ -1,0 +1,91 @@
+.form__group {
+    position: relative;
+    outline: 1px solid var(--clr__primary);
+    padding: 6px 8px 9px 8px;
+    margin-top: 10px;
+    border-radius: 0.65rem;
+}
+
+.form__group.accent{
+    outline: 1px solid var(--clr__accent);
+}
+
+.form__input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 0 9px 20px;
+    transition: border-color 0.2s;
+}
+
+/*  */
+.form__input::placeholder {
+    color: transparent;
+}
+
+/*  */
+.form__input:placeholder-shown~.form__label {
+    font-size: 16px;
+    cursor: text;
+    top: 14px;
+    color: var(--clr__primary);
+    background: transparent;
+    padding-inline: unset;
+    border-radius: unset;
+}
+.form__input.accent:placeholder-shown~.form__label {
+    color: var(--clr__accent);
+}
+
+
+
+.form__label,
+.form__input:focus~.form__label {
+    position: absolute;
+    z-index: 1;
+    padding: 0 10px;
+    left: 20px;
+    display: block;
+    transition: 0.2s;
+    font-size: 16px;
+    font-weight: 700;
+    word-spacing: 1.1;
+    top: -15px;
+    color: var(--txt__light);
+    background: var(--clr__primary);
+    padding-inline: 10px;
+    border-radius: 0.5rem;
+}
+
+.form__label.accent,
+.form__input.accent:focus~.form__label{
+    background: var(--clr__accent);
+    color: var(--txt__light);
+
+}
+
+.starlabel label:after {
+    content: "   *";
+    color: var(--clr__primary);
+}
+
+.starlabel.accent label:after{
+    color: var(--clr__accent);
+}
+
+.password__eye_cont {
+    position: absolute;
+    cursor: pointer;
+    right: 20px;
+    bottom: 8px;
+}
+
+
+@media screen and (max-width: 760px) {
+    .form__input, .form__label{
+        font-size: 14px;
+    }
+}
