@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import "./styles.css";
 import { useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+import axios from "axios";
+import "./styles.css";
+import URL from "../../../Constants/URL";
+import validateSignUp from "../../../Functions/validateSignUp";
 import signInImg from "../../../assets/img/GirlSignIn.png";
-import Button from "../../Common/Button";
 import FormField from "../../Common/FormField";
+import Button from "../../Common/Button";
+import { toast } from "react-toastify";
+
 const Signin = () => {
   const navigate = useNavigate();
   const [signInUser, setSignInUser] = useState({
@@ -11,12 +17,39 @@ const Signin = () => {
     email: "",
     username: "",
     password: "",
-    confirmPssword: "",
+    confirmPassword: "",
   });
+
+  async function handleUserSignUp(event) {
+    event.preventDefault();
+    // console.log(signInUser);
+    try{
+      const test = await validateSignUp(signInUser);
+    } catch(err){
+      console.error(err);
+      toast.error(err);
+      return;
+    }
+    try{
+      const response = await axios.post(`${URL}/auth/signup`, {
+        name: signInUser.name,
+        email: signInUser.email,
+        username: signInUser.username,
+        password: signInUser.password
+      });
+      console.log(response.data);
+      toast.success(response.data.message);
+      navigate("/");
+    } catch(err){
+      // console.log(err.response.data.message);
+      toast.error(err.response.data.message);
+      return;
+    }
+  }
   return (
     <div className="signin">
       <div className="signin__form-cont">
-        <form className="signin__form">
+        <form className="signin__form" onSubmit={handleUserSignUp}>
           <div className="form__body">
             <h1>Sign In</h1>
             <FormField 
@@ -67,16 +100,15 @@ const Signin = () => {
             <FormField 
               type={"password"}
               className={"accent"}
-              id={"confirmPssword"}
-              name={"confirmPssword"}
+              id={"confirmPassword"}
+              name={"confirmPassword"}
               labelTxt={"Confirm password "}
               placeholder={"Confirm password"}
-              value={signInUser.confirmPssword}
-              onChange={(e) => setSignInUser({ ...signInUser, confirmPssword: e.target.value })}
+              value={signInUser.confirmPassword}
+              onChange={(e) => setSignInUser({ ...signInUser, confirmPassword: e.target.value })}
               isPassword
               required
             />
-            
           </div>
           <div className="form__btn-cnt">
             <p>

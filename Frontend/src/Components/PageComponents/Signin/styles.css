@@ -78,9 +78,9 @@
         padding: 1.75rem;
 
     }
-    .header,
-    .header__img-cnt,
-    .header__img{
+    .signin .header,
+    .signin .header__img-cnt,
+    .signin .header__img{
         display: none !important;
     }
 

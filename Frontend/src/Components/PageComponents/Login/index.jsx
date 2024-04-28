@@ -1,19 +1,42 @@
 import React, { useState } from "react";
-import "./styles.css";
-import LoginJpg from "../../../assets/img/task.png";
-import Button from "../../Common/Button";
-import FormField from "../../Common/FormField";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import axios from "axios";
+import "./styles.css";
+import URL from "../../../Constants/URL";
+import LoginJpg from "../../../assets/img/task.png";
+import FormField from "../../Common/FormField";
+import Button from "../../Common/Button";
 const Login = () => {
   const navigate = useNavigate();
   const [loginUser, setLoginUser] = useState({
     loginId: "",
     password: "",
   });
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
+    try {
+      const response = await axios.post(`${URL}/auth/login`, loginUser);
+      if (!response)
+        throw new Error({
+          response: {
+            data: {
+              message: "No response from server",
+            },
+          },
+        });
+      // console.log(response.data.data);
+      toast.success("Login Successfull");
+        setTimeout(() => navigate("/dashboard"), 1000);
+
+    } catch (err) {
+      // console.log(err.response.data.status);
+      toast.error(err.response.data.message);
+      if (err.response.data.status === 404)
+        setTimeout(() => navigate("/signup"), 1000);
+    }
   }
+
   return (
     <div className="login">
       <div className="header">
@@ -44,7 +67,7 @@ const Login = () => {
               required
               name={"loginId"}
             />
-            <FormField 
+            <FormField
               type={"password"}
               labelTxt={"Enter your Password: "}
               id={"password"}
@@ -59,8 +82,13 @@ const Login = () => {
             />
           </div>
           <div className="form__btn-cnt">
-            <p>Don't have an account? <span onClick={()=>navigate("/signup")}>Sign up !</span></p>
-            <Button type={"submit"}>Login</Button>
+            <p>
+              Don't have an account?{" "}
+              <span onClick={() => navigate("/signup")}>Sign up !</span>
+            </p>
+            <Button type={"submit"} onClick={() => console.log("logging in")}>
+              Login
+            </Button>
           </div>
         </form>
       </div>
