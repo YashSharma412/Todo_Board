@@ -1,8 +1,11 @@
 import React from 'react'
+import TodoApp from '../Components/PageComponents/TodoApp'
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <>
+      <TodoApp />
+    </>
   )
 }
 

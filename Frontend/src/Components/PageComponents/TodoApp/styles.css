@@ -1,0 +1,10 @@
+.todo__app{
+    max-width: 1600px;
+    margin: auto;
+    min-height: 100dvh;
+    position: relative;
+}
+
+.main__page{
+    padding: 1.5rem;
+}

@@ -14,8 +14,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 3rem;
+    width: 100%;
     max-width: 700px;
-    padding: 2.5rem;
+    /* padding: 2.5rem; */
 }
 
 .header__img-cont {
@@ -56,11 +57,12 @@
     justify-content: space-between;
     gap: 1rem;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-    background: rgba(255, 190, 85, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.16);
+    /* background: rgba(255, 190, 85, 0.1); */
+    background: rgba(129, 116, 246, 0.3);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(9.1px);
-    border: 1px solid rgba(255, 190, 85, 0.2);
+    border: 1px solid rgba(129, 116, 246, 0.3);
 }
 
 .login .form__body {
@@ -83,19 +85,19 @@
 
 .form__btn-cnt p>span {
     cursor: pointer;
-    color: var(--clr__primary);
+    color: var(--clr__accent);
     font-weight: 900;
 }
 
 .form__btn-cnt p>span:hover{
     opacity: 1;
 }
-
+/* 
 .login .password__eye_cont>.eye {
     cursor: pointer;
     font-size: 1.4rem;
-    color: var(--clr__primary);
-}
+    color: var(--txt__light);
+} */
 
 @media screen and (max-width: 985px) {
     .header__body>h1 {

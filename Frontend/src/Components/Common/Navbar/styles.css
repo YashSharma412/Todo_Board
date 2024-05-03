@@ -1,0 +1,30 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--clr__accent);
+    opacity: 0.8;
+    position: sticky;
+}
+
+.menu__btn_cnt{
+    position: relative;
+}
+
+.menu__btn_cnt>button{
+    outline: none;
+    border: none;
+    display: block;
+    background-color: transparent;
+    color: var(--txt__light);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu__btn_cnt>button:hover{
+    scale: 1.1;
+    rotate: -45deg;
+}
+

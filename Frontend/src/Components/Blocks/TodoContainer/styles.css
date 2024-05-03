@@ -1,0 +1,7 @@
+.todos__container{
+    padding: 2.25rem 0.5rem;
+    justify-content: center;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}

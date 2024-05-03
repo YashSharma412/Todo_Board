@@ -39,3 +39,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.testDiv{
+  outline: 1px solid red;
+  outline-offset: -5px;
+}

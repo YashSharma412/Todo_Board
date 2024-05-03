@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import "./styles.css";
 import URL from "../../../Constants/URL";
-import LoginJpg from "../../../assets/img/task.png";
+import LoginJpg from "../../../assets/svgs/login.svg";
 import FormField from "../../Common/FormField";
 import Button from "../../Common/Button";
 const Login = () => {
@@ -16,7 +16,7 @@ const Login = () => {
   async function handleLogin(event) {
     event.preventDefault();
     try {
-      const response = await axios.post(`${URL}/auth/login`, loginUser);
+      const response = await axios.post(`${URL}/auth/login`, loginUser, {withCredentials: true});
       if (!response)
         throw new Error({
           response: {
@@ -27,8 +27,7 @@ const Login = () => {
         });
       // console.log(response.data.data);
       toast.success("Login Successfull");
-        setTimeout(() => navigate("/dashboard"), 1000);
-
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (err) {
       // console.log(err.response.data.status);
       toast.error(err.response.data.message);
@@ -40,14 +39,6 @@ const Login = () => {
   return (
     <div className="login">
       <div className="header">
-        <div className="header__body">
-          <h1> Welcome Back !</h1>
-          <p>
-            {" "}
-            Manage and maintain a todo list easily, and keep your life on track
-            !
-          </p>
-        </div>
         <div className="header__img-cont">
           <img src={LoginJpg} alt="login" />
         </div>
@@ -59,6 +50,7 @@ const Login = () => {
               type={"text"}
               labelTxt={"Enter your Email or Username: "}
               id={"loginId"}
+              className={"accent"}
               placeholder={"Enter login Id"}
               value={loginUser.loginId}
               onChange={(e) =>
@@ -69,6 +61,7 @@ const Login = () => {
             />
             <FormField
               type={"password"}
+              className={"accent"}
               labelTxt={"Enter your Password: "}
               id={"password"}
               placeholder={"Enter password"}
@@ -83,10 +76,14 @@ const Login = () => {
           </div>
           <div className="form__btn-cnt">
             <p>
-              Don't have an account?{" "}
-              <span onClick={() => navigate("/signup")}>Sign up !</span>
+              Don't have an account ?
+              <span onClick={() => navigate("/signup")}> Sign up !</span>
             </p>
-            <Button type={"submit"} onClick={() => console.log("logging in")}>
+            <Button
+              className={"accent"}
+              type={"submit"}
+              // onClick={() => console.log("logging in")}
+            >
               Login
             </Button>
           </div>

@@ -124,4 +124,22 @@ const logOutOfAllDevices = async (req, res) => {
   }
 };
 
-module.exports = { signUp, logIn, logOut, logOutOfAllDevices };
+const fetchUser = async (req, res) =>{
+  const username = req.session.user.username;
+  try {
+    const user = await User.findUserByLoginId(username);
+    return res.status(200).json({
+      status: 200,
+      message: "User fetched successfully",
+      data: user
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      status: 500,
+      message: `Internal server error. ${err}`,
+    });
+  }
+}
+
+module.exports = { signUp, logIn, logOut, logOutOfAllDevices, fetchUser };
